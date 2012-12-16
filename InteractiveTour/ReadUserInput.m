@@ -46,7 +46,7 @@
     return [self.buffer count];
 }
 
-- (NSMutableString *)getUserInput
+- (NSString *)getUserInput
 {
     NSFileHandle *fileHandle = [NSFileHandle fileHandleWithStandardInput];
     NSData *inputData;
@@ -56,7 +56,7 @@
     inputData = [fileHandle availableData];
     inputString = [[[NSString alloc] initWithData: inputData encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    return [inputString mutableCopy];
+    return inputString;
 }
 
 

@@ -15,6 +15,6 @@
 - (void)pushBuffer:(id)object;
 - (id)popBuffer;
 - (NSInteger)countOfBuffer;
-- (NSMutableString *)getUserInput;
+- (NSString *)getUserInput;
 
 @end
