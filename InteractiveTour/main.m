@@ -7,16 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReadUserInput.h"
 
 int main(int argc, const char * argv[])
 {
-
     @autoreleasepool {
+        ReadUserInput *userInput = [[ReadUserInput alloc] init];
+        [userInput pushBuffer:[userInput getUserInput]];
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        // do something else
         
+        [userInput pushBuffer:[userInput getUserInput]];
+        
+        for (NSInteger i = [userInput countOfBuffer]; i > 0; i--) {
+            NSLog(@"%@", [userInput popBuffer]);
+        }
     }
+    NSLog(@"Bye");
     return 0;
 }
 

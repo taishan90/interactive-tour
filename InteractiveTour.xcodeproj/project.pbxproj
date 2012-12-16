@@ -10,6 +10,7 @@
 		FC1DDE95167E252F00C0BE62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1DDE94167E252F00C0BE62 /* Foundation.framework */; };
 		FC1DDE98167E252F00C0BE62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDE97167E252F00C0BE62 /* main.m */; };
 		FC1DDE9C167E252F00C0BE62 /* InteractiveTour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */; };
+		FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		FC1DDE97167E252F00C0BE62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC1DDE9A167E252F00C0BE62 /* InteractiveTour-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InteractiveTour-Prefix.pch"; sourceTree = "<group>"; };
 		FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = InteractiveTour.1; sourceTree = "<group>"; };
+		FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadUserInput.h; sourceTree = "<group>"; };
+		FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadUserInput.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				FC1DDE97167E252F00C0BE62 /* main.m */,
+				FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */,
+				FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */,
 				FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */,
 				FC1DDE99167E252F00C0BE62 /* Supporting Files */,
 			);
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1DDE98167E252F00C0BE62 /* main.m in Sources */,
+				FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
