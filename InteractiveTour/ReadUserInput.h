@@ -12,9 +12,8 @@
 
 @property (nonatomic, strong)  NSMutableArray *buffer;
 
-- (void)pushBuffer:(id)object;
-- (id)popBuffer;
-- (NSInteger)countOfBuffer;
-- (NSString *)getUserInput;
+- (id) popBuffer;
+- (NSInteger) countOfBuffer;
+- (void) getUserInput;
 
 @end

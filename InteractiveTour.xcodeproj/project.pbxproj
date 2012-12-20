@@ -11,6 +11,7 @@
 		FC1DDE98167E252F00C0BE62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDE97167E252F00C0BE62 /* main.m */; };
 		FC1DDE9C167E252F00C0BE62 /* InteractiveTour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */; };
 		FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */; };
+		FCA939471683BC8F00603C5F /* ITContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITContainer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = InteractiveTour.1; sourceTree = "<group>"; };
 		FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadUserInput.h; sourceTree = "<group>"; };
 		FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadUserInput.m; sourceTree = "<group>"; };
+		FCA939451683BC8F00603C5F /* ITContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITContainer.h; sourceTree = "<group>"; };
+		FCA939461683BC8F00603C5F /* ITContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITContainer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 		FC1DDE96167E252F00C0BE62 /* InteractiveTour */ = {
 			isa = PBXGroup;
 			children = (
+				FCA939451683BC8F00603C5F /* ITContainer.h */,
+				FCA939461683BC8F00603C5F /* ITContainer.m */,
 				FC1DDE97167E252F00C0BE62 /* main.m */,
 				FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */,
 				FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */,
@@ -146,6 +151,7 @@
 			files = (
 				FC1DDE98167E252F00C0BE62 /* main.m in Sources */,
 				FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */,
+				FCA939471683BC8F00603C5F /* ITContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +248,7 @@
 				FC1DDEA1167E252F00C0BE62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

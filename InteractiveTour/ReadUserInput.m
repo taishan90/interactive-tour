@@ -7,16 +7,20 @@
 //
 
 #import "ReadUserInput.h"
+#import "ITContainer.h"
 
 @interface ReadUserInput()
 
-- (NSMutableArray *)buffer;
+- (void) pushBuffer:(ITContainer *)object;
+- (NSMutableArray *) buffer;
 
 @end
 
 @implementation ReadUserInput
 
-- (NSMutableArray *)buffer
+@synthesize buffer = _buffer;
+
+- (NSMutableArray *) buffer
 {
     if (!_buffer) {
         _buffer = [[NSMutableArray alloc] init];
@@ -25,15 +29,12 @@
     return _buffer;
 }
 
-- (void)pushBuffer:(id)object
+- (void) pushBuffer:(ITContainer *)object
 {
-    if (object) {
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:object forKey:[NSDate date]];
-        [self.buffer insertObject:dict atIndex:0];
-    }
+    if (object) [self.buffer insertObject:object atIndex:0];
 }
 
-- (id)popBuffer
+- (id) popBuffer
 {
     id object = [self.buffer lastObject];
     if (object) [self.buffer removeLastObject];
@@ -41,23 +42,30 @@
 }
 
 
-- (NSInteger)countOfBuffer
+- (NSInteger) countOfBuffer
 {
     return [self.buffer count];
 }
 
-- (NSString *)getUserInput
+- (void) getUserInput
 {
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleWithStandardInput];
-    NSData *inputData;
-    NSString *inputString;
+    char buffer[1024];
+    int i = 0;
+    int ch;
     
-    NSLog(@"Enter text please: ");
-    inputData = [fileHandle availableData];
-    inputString = [[[NSString alloc] initWithData: inputData encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    return inputString;
+    while ((ch = getc(stdin)) != EOF) {
+        if (ch == '\n') {
+            buffer[i] = '\0';
+            i = 0;
+            ITContainer *container = [[ITContainer alloc] init];
+            container.value = [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
+            container.date = [NSDate date];
+            [self pushBuffer:container];
+        } else {
+            buffer[i] = ch;
+            i++;
+        }
+    }
 }
-
 
 @end

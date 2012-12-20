@@ -8,22 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "ReadUserInput.h"
+#import "ITContainer.h"
 
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
         ReadUserInput *userInput = [[ReadUserInput alloc] init];
-        [userInput pushBuffer:[userInput getUserInput]];
+        [userInput getUserInput];
         
         // do something else
-        
-        [userInput pushBuffer:[userInput getUserInput]];
-        
+
         for (NSInteger i = [userInput countOfBuffer]; i > 0; i--) {
-            NSLog(@"%@", [userInput popBuffer]);
+            ITContainer *container = [userInput popBuffer];
+            NSLog(@"%@ : %@", container.value, container.date);
         }
     }
-    NSLog(@"Bye");
+
     return 0;
 }
 
