@@ -11,34 +11,35 @@
 
 @interface RLConsoleReader ()
 
+@property (nonatomic, assign) NSMutableArray *mutableBuffer;
+
 - (void)pushBuffer:(ITDateAndInputHolder *)object;
-- (NSMutableArray *)buffer;
 
 @end
 
 @implementation RLConsoleReader
 
-@synthesize buffer = _buffer;
+@dynamic buffer;
 
-- (NSMutableArray *)buffer {
-    if (!_buffer) {
-        _buffer = [[NSMutableArray alloc] init];
-    }
-    return _buffer;
+@synthesize mutableBuffer = _mutableBuffer;
+
+- (NSArray *)buffer {
+    return [[[self mutableBuffer] copy] autorelease];
 }
 
 - (void)pushBuffer:(ITDateAndInputHolder *)object {
-    if (object) [self.buffer insertObject:object atIndex:0];
+    if (!_mutableBuffer) _mutableBuffer = [[NSMutableArray alloc] init];
+    if (object) [self.mutableBuffer insertObject:object atIndex:0];
 }
 
 - (id)popBuffer {
-    id object = [self.buffer lastObject];
-    if (object) [self.buffer removeLastObject];
+    id object = [self.mutableBuffer lastObject];
+    if (object) [self.mutableBuffer removeLastObject];
     return object;
 }
 
-- (NSInteger)countOfBuffer {
-    return [self.buffer count];
+- (NSInteger)countOfMutableBuffer {
+    return [self.mutableBuffer count];
 }
 
 - (void)getUserInput {
@@ -47,9 +48,7 @@
     
     while ((inputChar = getc(stdin)) != EOF) {
         if (inputChar == '\n') {
-            ITDateAndInputHolder *container = [[ITDateAndInputHolder alloc] init];
-            container.value = [[result copy] autorelease];
-            container.date = [NSDate date];
+            ITDateAndInputHolder *container = [[ITDateAndInputHolder alloc] initWithDate:[NSDate date] value:[[result copy] autorelease]];
             result = [NSMutableString string];
             [container autorelease];
             [self pushBuffer:container];

@@ -10,10 +10,10 @@
 
 @interface RLConsoleReader : NSObject
 
-@property (nonatomic, strong) NSMutableArray *buffer;
+@property (readonly) NSArray *buffer;
 
 - (id)popBuffer;
-- (NSInteger)countOfBuffer;
+- (NSInteger)countOfMutableBuffer;
 - (void)getUserInput;
 
 @end

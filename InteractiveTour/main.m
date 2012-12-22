@@ -14,14 +14,14 @@ int main(int argc, const char * argv[])
 {
     RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
     [userInput getUserInput];
-    
+
     // do something else
     
-    for (NSInteger i = [userInput countOfBuffer]; i > 0; i--) {
+    for (NSInteger i = [userInput countOfMutableBuffer]; i > 0; i--) {
         ITDateAndInputHolder *container = [userInput popBuffer];
-        NSLog(@"%@ : %@", container.value, container.date);
+        NSLog(@"%@ : %@", [container value], [container date]);
     }
-    [userInput release];
+    [userInput autorelease];
     return 0;
 }
 
