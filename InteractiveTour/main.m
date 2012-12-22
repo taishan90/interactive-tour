@@ -7,23 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ReadUserInput.h"
-#import "ITContainer.h"
+#import "RLConsoleReader.h"
+#import "ITDateAndInputHolder.h"
 
 int main(int argc, const char * argv[])
 {
-    @autoreleasepool {
-        ReadUserInput *userInput = [[ReadUserInput alloc] init];
-        [userInput getUserInput];
-        
-        // do something else
-
-        for (NSInteger i = [userInput countOfBuffer]; i > 0; i--) {
-            ITContainer *container = [userInput popBuffer];
-            NSLog(@"%@ : %@", container.value, container.date);
-        }
+    RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
+    [userInput getUserInput];
+    
+    // do something else
+    
+    for (NSInteger i = [userInput countOfBuffer]; i > 0; i--) {
+        ITDateAndInputHolder *container = [userInput popBuffer];
+        NSLog(@"%@ : %@", container.value, container.date);
     }
-
+    [userInput release];
     return 0;
 }
 

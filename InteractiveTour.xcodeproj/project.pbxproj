@@ -10,8 +10,8 @@
 		FC1DDE95167E252F00C0BE62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1DDE94167E252F00C0BE62 /* Foundation.framework */; };
 		FC1DDE98167E252F00C0BE62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDE97167E252F00C0BE62 /* main.m */; };
 		FC1DDE9C167E252F00C0BE62 /* InteractiveTour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */; };
-		FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */; };
-		FCA939471683BC8F00603C5F /* ITContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITContainer.m */; };
+		FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */; };
+		FCA939471683BC8F00603C5F /* ITDateAndInputHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITDateAndInputHolder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,10 +33,10 @@
 		FC1DDE97167E252F00C0BE62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC1DDE9A167E252F00C0BE62 /* InteractiveTour-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InteractiveTour-Prefix.pch"; sourceTree = "<group>"; };
 		FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = InteractiveTour.1; sourceTree = "<group>"; };
-		FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadUserInput.h; sourceTree = "<group>"; };
-		FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadUserInput.m; sourceTree = "<group>"; };
-		FCA939451683BC8F00603C5F /* ITContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITContainer.h; sourceTree = "<group>"; };
-		FCA939461683BC8F00603C5F /* ITContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITContainer.m; sourceTree = "<group>"; };
+		FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLConsoleReader.h; sourceTree = "<group>"; };
+		FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLConsoleReader.m; sourceTree = "<group>"; };
+		FCA939451683BC8F00603C5F /* ITDateAndInputHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITDateAndInputHolder.h; sourceTree = "<group>"; };
+		FCA939461683BC8F00603C5F /* ITDateAndInputHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITDateAndInputHolder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +79,11 @@
 		FC1DDE96167E252F00C0BE62 /* InteractiveTour */ = {
 			isa = PBXGroup;
 			children = (
-				FCA939451683BC8F00603C5F /* ITContainer.h */,
-				FCA939461683BC8F00603C5F /* ITContainer.m */,
+				FCA939451683BC8F00603C5F /* ITDateAndInputHolder.h */,
+				FCA939461683BC8F00603C5F /* ITDateAndInputHolder.m */,
 				FC1DDE97167E252F00C0BE62 /* main.m */,
-				FC1DDEA6167E396900C0BE62 /* ReadUserInput.h */,
-				FC1DDEA7167E396900C0BE62 /* ReadUserInput.m */,
+				FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */,
+				FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */,
 				FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */,
 				FC1DDE99167E252F00C0BE62 /* Supporting Files */,
 			);
@@ -150,8 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1DDE98167E252F00C0BE62 /* main.m in Sources */,
-				FC1DDEA8167E396900C0BE62 /* ReadUserInput.m in Sources */,
-				FCA939471683BC8F00603C5F /* ITContainer.m in Sources */,
+				FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */,
+				FCA939471683BC8F00603C5F /* ITDateAndInputHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +214,7 @@
 		FC1DDEA0167E252F00C0BE62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InteractiveTour/InteractiveTour-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -223,6 +224,7 @@
 		FC1DDEA1167E252F00C0BE62 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InteractiveTour/InteractiveTour-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
