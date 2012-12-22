@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ITContainer : NSObject {
+@interface ITDateAndInputHolder : NSObject {
     NSString *value;
     NSDate *date;
 }

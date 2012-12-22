@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Roman Laitarenko. All rights reserved.
 //
 
-#import "ITContainer.h"
+#import "ITDateAndInputHolder.h"
 
-@implementation ITContainer
+@implementation ITDateAndInputHolder
 
 @synthesize value = _value;
-@synthesize date = _date;
+@synthesize date =  _date;
 
 @end
