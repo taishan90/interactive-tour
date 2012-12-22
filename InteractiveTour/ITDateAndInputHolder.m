@@ -8,9 +8,24 @@
 
 #import "ITDateAndInputHolder.h"
 
+@interface ITDateAndInputHolder ()
+
+@property (readwrite) NSString *value;
+@property (readwrite) NSDate *date;
+
+@end
+
 @implementation ITDateAndInputHolder
 
 @synthesize value = _value;
 @synthesize date =  _date;
+
+- (id)initWithDate:(NSDate *)date value:(NSString *)value {
+    if (self = [super init]) {
+        [self setDate:date];
+        [self setValue:value];
+    }
+    return self;
+}
 
 @end

@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ITDateAndInputHolder : NSObject {
-    NSString *value;
-    NSDate *date;
-}
+@interface ITDateAndInputHolder : NSObject
 
-@property (nonatomic, strong) NSString *value;
-@property (nonatomic, strong) NSDate *date;
+@property (readonly) NSString *value;
+@property (readonly) NSDate *date;
+
+- (id)initWithDate:(NSDate *)date value:(NSString *)value;
 
 @end
