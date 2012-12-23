@@ -58,4 +58,10 @@
     }
 }
 
+- (void)dealloc {
+    [_mutableBuffer release];
+    
+    [super dealloc];
+}
+
 @end

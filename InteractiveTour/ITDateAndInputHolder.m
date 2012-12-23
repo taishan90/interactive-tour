@@ -10,8 +10,8 @@
 
 @interface ITDateAndInputHolder ()
 
-@property (readwrite) NSString *value;
-@property (readwrite) NSDate *date;
+@property (nonatomic, readwrite) NSString *value;
+@property (nonatomic, readwrite) NSDate *date;
 
 @end
 
@@ -22,10 +22,17 @@
 
 - (id)initWithDate:(NSDate *)date value:(NSString *)value {
     if (self = [super init]) {
-        [self setDate:date];
-        [self setValue:value];
+        [self setDate:[date retain]];
+        [self setValue:[value retain]];
     }
     return self;
 }
 
+
+- (void)dealloc {
+    [_value release];
+    [_date release];
+    
+    [super dealloc];
+}
 @end

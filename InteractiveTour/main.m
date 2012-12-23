@@ -21,7 +21,7 @@ int main(int argc, const char * argv[])
         ITDateAndInputHolder *container = [userInput popBuffer];
         NSLog(@"%@ : %@", [container value], [container date]);
     }
-    [userInput autorelease];
+    [userInput release];
     return 0;
 }
 
