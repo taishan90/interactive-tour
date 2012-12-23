@@ -22,17 +22,10 @@
 
 - (id)initWithDate:(NSDate *)date value:(NSString *)value {
     if (self = [super init]) {
-        [self setDate:[date retain]];
-        [self setValue:[value retain]];
+        [self setDate:date];
+        [self setValue:value];
     }
     return self;
 }
 
-
-- (void)dealloc {
-    [_value release];
-    [_date release];
-    
-    [super dealloc];
-}
 @end

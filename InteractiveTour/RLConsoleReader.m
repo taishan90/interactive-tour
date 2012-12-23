@@ -50,8 +50,7 @@
         if (inputChar == '\n') {
             ITDateAndInputHolder *container = [[ITDateAndInputHolder alloc] initWithDate:[NSDate date] value:[[result copy] autorelease]];
             result = [NSMutableString string];
-            [container autorelease];
-            [self pushBuffer:container];
+            [self pushBuffer:[container autorelease]];
         } else {
             [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
         }
