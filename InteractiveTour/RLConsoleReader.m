@@ -7,13 +7,15 @@
 //
 
 #import "RLConsoleReader.h"
-#import "ITDateAndInputHolder.h"
+#import "ITEvent.h"
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, assign) NSMutableArray *mutableBuffer;
+@property (nonatomic, retain) NSMutableArray *mutableBuffer;
+@property (nonatomic, readwrite) BOOL inProcessOfGettingInput;
 
-- (void)pushBuffer:(ITDateAndInputHolder *)object;
+- (void)getUserInput;
+- (void)addInputEvent:(ITEvent *)object;
 
 @end
 
@@ -21,36 +23,48 @@
 
 @dynamic buffer;
 
-@synthesize mutableBuffer = _mutableBuffer;
+@synthesize mutableBuffer =           _mutableBuffer;
+@synthesize inProcessOfGettingInput = _inProcessOfGettingInput;
 
+- (id)init {
+    if (self = [super init]) {
+        self.mutableBuffer = [[[NSMutableArray alloc] init] autorelease];
+    }
+    return self;
+}
 - (NSArray *)buffer {
     return [[[self mutableBuffer] copy] autorelease];
 }
 
-- (void)pushBuffer:(ITDateAndInputHolder *)object {
-    if (!_mutableBuffer) _mutableBuffer = [[NSMutableArray alloc] init];
-    if (object) [self.mutableBuffer insertObject:object atIndex:0];
+- (void)addInputEvent:(ITEvent *)event {
+    if (event) [self.mutableBuffer insertObject:event atIndex:0];
 }
 
-- (id)popBuffer {
-    id object = [self.mutableBuffer lastObject];
-    if (object) [self.mutableBuffer removeLastObject];
-    return object;
+- (ITEvent *)getInputEvent {
+    ITEvent *event = [self.mutableBuffer lastObject];
+    if (event) [self.mutableBuffer removeLastObject];
+    return event;
 }
 
-- (NSInteger)countOfMutableBuffer {
-    return [self.mutableBuffer count];
+- (void)start {
+    self.inProcessOfGettingInput = YES;
+    [self getUserInput]; //freaking [self performSelectorInBackground:@selector(getUserInput) withObject:nil] doesn't want to work
+
+}
+
+- (void)stop {
+    self.inProcessOfGettingInput = NO;
 }
 
 - (void)getUserInput {
     int inputChar;
     NSMutableString *result = [NSMutableString string];
     
-    while ((inputChar = getc(stdin)) != EOF) {
+    while (((inputChar = getc(stdin)) != EOF) && self.inProcessOfGettingInput) {
         if (inputChar == '\n') {
-            ITDateAndInputHolder *container = [[ITDateAndInputHolder alloc] initWithDate:[NSDate date] value:[[result copy] autorelease]];
+            ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:[[result copy] autorelease]];
             result = [NSMutableString string];
-            [self pushBuffer:[container autorelease]];
+            [self addInputEvent:[container autorelease]];
         } else {
             [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
         }
@@ -58,8 +72,8 @@
 }
 
 - (void)dealloc {
-    [_mutableBuffer release];
-    
+    self.mutableBuffer = nil;
+
     [super dealloc];
 }
 

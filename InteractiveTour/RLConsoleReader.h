@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ITEvent.h"
 
 @interface RLConsoleReader : NSObject
 
 @property (nonatomic, readonly) NSArray *buffer;
+@property (nonatomic, readonly) BOOL inProcessOfGettingInput;
 
-- (id)popBuffer;
-- (NSInteger)countOfMutableBuffer;
-- (void)getUserInput;
-
+- (ITEvent *)getInputEvent;
+- (void)start;
+- (void)stop;
 @end

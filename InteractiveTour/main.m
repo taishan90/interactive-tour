@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "RLConsoleReader.h"
-#import "ITDateAndInputHolder.h"
+#import "ITEvent.h"
 
 int main(int argc, const char * argv[])
 {
     RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
-    [userInput getUserInput];
-
-    // do something else
+    [userInput start];
+    [userInput stop];
     
-    for (NSInteger i = [userInput countOfMutableBuffer]; i > 0; i--) {
-        ITDateAndInputHolder *container = [userInput popBuffer];
+
+    for (ITEvent *container in [userInput buffer]) {
         NSLog(@"%@ : %@", [container value], [container date]);
     }
     [userInput release];
+    
     return 0;
 }
 
