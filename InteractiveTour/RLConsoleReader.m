@@ -12,8 +12,8 @@
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, retain)       NSMutableArray  *mutableBuffer;
-@property (nonatomic, readwrite)    BOOL            isReading;
+@property (nonatomic, retain)   NSMutableArray  *mutableBuffer;
+@property (readwrite)           BOOL            isReading;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -60,7 +60,7 @@
 
 - (void)start {
     self.isReading = YES;
-    [self getUserInput]; //freaking [self performSelectorInBackground:@selector(getUserInput) withObject:nil] doesn't want to work
+    [self getUserInput];
 }
 
 - (void)stop {
