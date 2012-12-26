@@ -12,9 +12,9 @@
     NSDate *_date;
 }
 
-@property (nonatomic, readonly) NSString *value;
-@property (nonatomic, readonly, retain) NSDate *date;
+@property (nonatomic, readonly, copy)       NSString    *value;
+@property (nonatomic, readonly, retain)     NSDate      *date;
 
-- (id)initWithDate:(NSDate *)date value:(NSString *)value;
+- (id)initWithDate:(NSDate *)aDate value:(NSString *)aValue;
 
 @end

@@ -10,30 +10,31 @@
 
 @interface ITEvent ()
 
-@property (nonatomic, readwrite) NSString *value;
-@property (nonatomic, readwrite, retain) NSDate *date;
+@property (nonatomic, readwrite, copy)      NSString    *value;
+@property (nonatomic, readwrite, retain)    NSDate      *date;
 
 @end
 
 @implementation ITEvent
 
-@synthesize value = _value;
-@synthesize date =  _date;
+@synthesize value   = _value;
+@synthesize date    = _date;
 
-
-- (id)initWithDate:(NSDate *)date value:(NSString *)value {
-    if (self = [super init]) {
-        [self setDate:date];
-        [self setValue:[[value copy] autorelease]];
-    }
-    return self;
-}
+#pragma mark Initializations And Deallocations
 
 - (void)dealloc {
     self.date = nil;
     self.value = nil;
     
     [super dealloc];
+}
+
+- (id)initWithDate:(NSDate *)aDate value:(NSString *)aValue {
+    if (self = [super init]) {
+        self.date = aDate;
+        self.value = aValue;
+    }
+    return self;
 }
 
 @end
