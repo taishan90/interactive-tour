@@ -12,7 +12,7 @@
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, retain)   NSMutableArray  *mutableBuffer;
+@property (nonatomic, retain)   NSMutableArray  *mutableEvents;
 @property (readwrite)           BOOL            isReading;
 
 - (void)getUserInput;
@@ -22,38 +22,43 @@
 
 @implementation RLConsoleReader
 
-@synthesize mutableBuffer   = _mutableBuffer;
+@synthesize mutableEvents   = _mutableBuffer;
 @synthesize isReading       = _inProcessOfGettingInput;
 
-@dynamic buffer;
+@dynamic events;
 
+#pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)buffer {
-    return [[[self mutableBuffer] copy] autorelease];
+- (NSArray *)events {
+    NSArray *result = [[self.mutableEvents copy] autorelease];
+    [self.mutableEvents removeAllObjects];
+    return result;
 }
 
+#pragma mark -
 #pragma mark Initializations And Deallocations
 
 - (void)dealloc {
-    self.mutableBuffer = nil;
+    self.mutableEvents = nil;
     
     [super dealloc];
 }
 
 - (id)init {
     if (self = [super init]) {
-        self.mutableBuffer = [NSMutableArray autoreleasedObject];
+        self.mutableEvents = [NSMutableArray autoreleasedObject];
     }
     return self;
 }
 
+#pragma mark -
 #pragma mark Public
 
 - (ITEvent *)getInputEvent {
-    ITEvent *event = [self.mutableBuffer lastObject];
+    ITEvent *event = [self.mutableEvents lastObject];
     if (event) {
-        [self.mutableBuffer removeLastObject];
+        [self.mutableEvents removeLastObject];
     }
     return event;
 }
@@ -67,11 +72,12 @@
     self.isReading = NO;
 }
 
+#pragma mark -
 #pragma mark Private
 
 - (void)addInputEvent:(ITEvent *)event {
     if (event) {
-        [self.mutableBuffer insertObject:event atIndex:0];
+        [self.mutableEvents insertObject:event atIndex:0];
     }
 }
 

@@ -17,7 +17,7 @@ int main(int argc, const char * argv[])
     [userInput stop];
     
 
-    for (ITEvent *container in [userInput buffer]) {
+    for (ITEvent *container in [userInput events]) {
         NSLog(@"%@ : %@", [container value], [container date]);
     }
     [userInput release];

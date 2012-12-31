@@ -20,6 +20,7 @@
 @synthesize value   = _value;
 @synthesize date    = _date;
 
+#pragma mark -
 #pragma mark Initializations And Deallocations
 
 - (void)dealloc {
