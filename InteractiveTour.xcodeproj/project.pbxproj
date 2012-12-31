@@ -11,7 +11,6 @@
 		FC1DDE98167E252F00C0BE62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDE97167E252F00C0BE62 /* main.m */; };
 		FC1DDE9C167E252F00C0BE62 /* InteractiveTour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */; };
 		FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */; };
-		FC974EB51692093E0001D245 /* MyRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC974EB41692093E0001D245 /* MyRunLoop.m */; };
 		FCA939471683BC8F00603C5F /* ITEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITEvent.m */; };
 		FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */; };
 /* End PBXBuildFile section */
@@ -37,8 +36,6 @@
 		FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = InteractiveTour.1; sourceTree = "<group>"; };
 		FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLConsoleReader.h; sourceTree = "<group>"; };
 		FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLConsoleReader.m; sourceTree = "<group>"; };
-		FC974EB31692093E0001D245 /* MyRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRunLoop.h; sourceTree = "<group>"; };
-		FC974EB41692093E0001D245 /* MyRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRunLoop.m; sourceTree = "<group>"; };
 		FCA939451683BC8F00603C5F /* ITEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITEvent.h; sourceTree = "<group>"; };
 		FCA939461683BC8F00603C5F /* ITEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITEvent.m; sourceTree = "<group>"; };
 		FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+InitAutoreleasedObject.h"; sourceTree = "<group>"; };
@@ -85,8 +82,6 @@
 		FC1DDE96167E252F00C0BE62 /* InteractiveTour */ = {
 			isa = PBXGroup;
 			children = (
-				FC974EB31692093E0001D245 /* MyRunLoop.h */,
-				FC974EB41692093E0001D245 /* MyRunLoop.m */,
 				FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */,
 				FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */,
 				FCA939451683BC8F00603C5F /* ITEvent.h */,
@@ -163,7 +158,6 @@
 				FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */,
 				FCA939471683BC8F00603C5F /* ITEvent.m in Sources */,
 				FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */,
-				FC974EB51692093E0001D245 /* MyRunLoop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
