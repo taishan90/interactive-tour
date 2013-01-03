@@ -82,17 +82,16 @@
 }
 
 - (void)getUserInput {
-    int inputChar;
+    // stub to compile without warnings
+    int inputChar = 0;
     NSMutableString *result = [NSMutableString string];
     
-    while (((inputChar = getc(stdin)) != EOF) && self.isReading) {
-        if (inputChar == '\n') {
-            ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:result];
-            result = [NSMutableString string];
-            [self addInputEvent:[container autorelease]];
-        } else {
-            [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
-        }
+    if (inputChar == '\n') {
+        ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:result];
+        result = [NSMutableString string];
+        [self addInputEvent:[container autorelease]];
+    } else {
+        [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
 }
 
