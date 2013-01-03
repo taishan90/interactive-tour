@@ -11,6 +11,9 @@
 
 @implementation RLRunLoop
 
+#pragma mark -
+#pragma mark Public
+
 - (void)getKeyboardInputAndPerformSelector:(SEL)aSelector withObject:(RLConsoleReader*)anArgument {
     int inputChar;
     
