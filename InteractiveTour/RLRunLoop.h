@@ -10,6 +10,8 @@
 
 @interface RLRunLoop : NSObject
 
+@property BOOL exitRunLoop;
+
 - (void)performSelector:(SEL)aSelector withTarget:(id)aTarget;
 - (void)run;
 

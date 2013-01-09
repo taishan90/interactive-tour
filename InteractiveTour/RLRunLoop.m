@@ -12,7 +12,6 @@ typedef void(^MyBlock)(void);
 
 @interface RLRunLoop ()
 
-@property           BOOL            exitRunLoop;
 @property (retain)  NSMutableArray  *eventsToRun;
 @end
 
