@@ -10,7 +10,7 @@
 
 @interface RLRunLoop : NSObject
 
-- (void)addEventToRun:(id)aTarget selector:(SEL)aSelector;
+- (void)performSelector:(SEL)aSelector withTarget:(id)aTarget;
 - (void)run;
 
 @end

@@ -41,7 +41,7 @@ typedef void(^MyBlock)(void);
 #pragma mark -
 #pragma mark Public
 
-- (void) addEventToRun:(id)aTarget selector:(SEL)aSelector {
+- (void)performSelector:(SEL)aSelector withTarget:(id)aTarget {
     if ([aTarget respondsToSelector:aSelector]) {
         [self.eventsToRun addObject:^{
             [aTarget performSelector:aSelector];
