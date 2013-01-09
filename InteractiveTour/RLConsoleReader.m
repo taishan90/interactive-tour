@@ -12,8 +12,9 @@
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, retain)   NSMutableArray  *mutableEvents;
-@property (readwrite)           BOOL            isReading;
+@property (retain)      NSMutableArray  *mutableEvents;
+@property (readwrite)   BOOL            isReading;
+@property (retain)      NSMutableString *resultOfUserInput;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -22,8 +23,9 @@
 
 @implementation RLConsoleReader
 
-@synthesize mutableEvents   = _mutableBuffer;
-@synthesize isReading       = _inProcessOfGettingInput;
+@synthesize mutableEvents       = _mutableBuffer;
+@synthesize isReading           = _inProcessOfGettingInput;
+@synthesize resultOfUserInput   = _resultOfUserInput;
 
 @dynamic events;
 
@@ -41,6 +43,7 @@
 
 - (void)dealloc {
     self.mutableEvents = nil;
+    self.resultOfUserInput = nil;
     
     [super dealloc];
 }
@@ -48,6 +51,7 @@
 - (id)init {
     if (self = [super init]) {
         self.mutableEvents = [NSMutableArray autoreleasedObject];
+        self.resultOfUserInput = [NSMutableString string];
     }
     return self;
 }
@@ -82,16 +86,16 @@
 }
 
 - (void)getUserInput {
-    // stub to compile without warnings
-    int inputChar = 0;
-    NSMutableString *result = [NSMutableString string];
+    int inputChar = getc(stdin);
     
     if (inputChar == '\n') {
-        ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:result];
-        result = [NSMutableString string];
+        ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:self.resultOfUserInput];
+        self.resultOfUserInput = [NSMutableString string];
         [self addInputEvent:[container autorelease]];
+    } else if (inputChar == EOF) {
+        self.isReading = NO;
     } else {
-        [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
+        [self.resultOfUserInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
 }
 

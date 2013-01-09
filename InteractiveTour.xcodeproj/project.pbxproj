@@ -11,8 +11,8 @@
 		FC1DDE98167E252F00C0BE62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDE97167E252F00C0BE62 /* main.m */; };
 		FC1DDE9C167E252F00C0BE62 /* InteractiveTour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */; };
 		FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */; };
+		FC3A0640169C98D500718D68 /* RLRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3A063F169C98D500718D68 /* RLRunLoop.m */; };
 		FCA939471683BC8F00603C5F /* ITEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITEvent.m */; };
-		FCD453E116957C6D001C1AC7 /* RLRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD453E016957C6D001C1AC7 /* RLRunLoop.m */; };
 		FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +37,10 @@
 		FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = InteractiveTour.1; sourceTree = "<group>"; };
 		FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLConsoleReader.h; sourceTree = "<group>"; };
 		FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLConsoleReader.m; sourceTree = "<group>"; };
+		FC3A063E169C98D500718D68 /* RLRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLRunLoop.h; sourceTree = "<group>"; };
+		FC3A063F169C98D500718D68 /* RLRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLRunLoop.m; sourceTree = "<group>"; };
 		FCA939451683BC8F00603C5F /* ITEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITEvent.h; sourceTree = "<group>"; };
 		FCA939461683BC8F00603C5F /* ITEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITEvent.m; sourceTree = "<group>"; };
-		FCD453DF16957C6D001C1AC7 /* RLRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLRunLoop.h; sourceTree = "<group>"; };
-		FCD453E016957C6D001C1AC7 /* RLRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLRunLoop.m; sourceTree = "<group>"; };
 		FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+InitAutoreleasedObject.h"; sourceTree = "<group>"; };
 		FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+InitAutoreleasedObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,8 +89,8 @@
 				FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */,
 				FCA939451683BC8F00603C5F /* ITEvent.h */,
 				FCA939461683BC8F00603C5F /* ITEvent.m */,
-				FCD453DF16957C6D001C1AC7 /* RLRunLoop.h */,
-				FCD453E016957C6D001C1AC7 /* RLRunLoop.m */,
+				FC3A063E169C98D500718D68 /* RLRunLoop.h */,
+				FC3A063F169C98D500718D68 /* RLRunLoop.m */,
 				FC1DDE97167E252F00C0BE62 /* main.m */,
 				FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */,
 				FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */,
@@ -163,7 +163,7 @@
 				FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */,
 				FCA939471683BC8F00603C5F /* ITEvent.m in Sources */,
 				FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */,
-				FCD453E116957C6D001C1AC7 /* RLRunLoop.m in Sources */,
+				FC3A0640169C98D500718D68 /* RLRunLoop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,27 +1,60 @@
 //
-//  RLRunLoop.m
+//  RLRunLoopNew.m
 //  InteractiveTour
 //
-//  Created by Roman Laitarenko on 1/3/13.
+//  Created by Roman Laitarenko on 1/8/13.
 //  Copyright (c) 2013 Roman Laitarenko. All rights reserved.
 //
 
 #import "RLRunLoop.h"
-#import "RLConsoleReader.h"
+
+typedef void(^MyBlock)(void);
+
+@interface RLRunLoop ()
+
+@property           BOOL            exitRunLoop;
+@property (retain)  NSMutableArray  *eventsToRun;
+@end
 
 @implementation RLRunLoop
+
+@synthesize exitRunLoop = _exitRunLoop;
+@synthesize eventsToRun = _eventsToRun;
+
+#pragma mark -
+#pragma mark Initializations And Deallocations
+
+- (void)dealloc {
+    self.eventsToRun = nil;
+    
+    [super dealloc];
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.eventsToRun = [NSMutableArray array];
+    }
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Public
 
-- (void)getKeyboardInputAndPerformSelector:(SEL)aSelector withObject:(RLConsoleReader*)anArgument {
-    int inputChar;
-    
-    while (((inputChar = getc(stdin)) != EOF) && anArgument.isReading) {
-        // probably we should do smthn like this
-        [anArgument performSelector:aSelector];
+- (void) addEventToRun:(id)aTarget selector:(SEL)aSelector {
+    if ([aTarget respondsToSelector:aSelector]) {
+        [self.eventsToRun addObject:^{
+            [aTarget performSelector:aSelector];
+        }];
     }
 }
 
+- (void)run {
+    while (!self.exitRunLoop) {
+        for (MyBlock block in self.eventsToRun) {
+            block();
+        }
+    }
+}
 
 @end
