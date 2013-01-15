@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^CustomBlock)(void);
+
 @interface RLRunLoop : NSObject
 
-@property BOOL exitRunLoop;
+@property (atomic, readonly, assign) BOOL exitRunLoop;
 
-- (void)performSelector:(SEL)aSelector withTarget:(id)aTarget;
-- (void)run;
+- (void)scheduleEventUsingSelector:(SEL)aSelector withObject:(id)anObject;
+- (void)scheduleEventUsingSelector:(SEL)aSelector object:(id)anObject block:(CustomBlock)aBlock;
+
+- (NSArray *)inputSourcesWithSelector:(SEL)aSelector;
+- (NSArray *)inputSourcesWithObject:(id)anObject;
+
+- (void)start;
+- (void)stop;
 
 @end

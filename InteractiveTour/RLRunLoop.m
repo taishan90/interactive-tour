@@ -7,12 +7,12 @@
 //
 
 #import "RLRunLoop.h"
-
-typedef void(^MyBlock)(void);
+#import "ITInputSource.h"
 
 @interface RLRunLoop ()
 
-@property (retain)  NSMutableArray  *eventsToRun;
+@property (atomic, readwrite, retain) NSMutableArray    *eventsToRun;
+@property (atomic, readwrite, assign) BOOL              exitRunLoop;
 @end
 
 @implementation RLRunLoop
@@ -40,20 +40,56 @@ typedef void(^MyBlock)(void);
 #pragma mark -
 #pragma mark Public
 
-- (void)performSelector:(SEL)aSelector withTarget:(id)aTarget {
-    if ([aTarget respondsToSelector:aSelector]) {
-        [self.eventsToRun addObject:^{
-            [aTarget performSelector:aSelector];
-        }];
+- (NSArray *)inputSourcesWithSelector:(SEL)aSelector {
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (ITInputSource *source in self.eventsToRun) {
+        if (aSelector == source.selector) {
+            [result addObject:source];
+        }
+    }
+    return [[result copy] autorelease];
+}
+
+- (NSArray *)inputSourcesWithObject:(id)anObject {
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (ITInputSource *source in self.eventsToRun) {
+        if ([anObject isEqual:source.object]) {
+            [result addObject:source];
+        }
+    }
+    return [[result copy] autorelease];
+}
+
+- (void)scheduleEventUsingSelector:(SEL)aSelector withObject:(id)anObject {
+    [self scheduleEventUsingSelector:aSelector object:anObject block:^{
+        [anObject performSelector:aSelector];
+    }];
+}
+
+- (void)scheduleEventUsingSelector:(SEL)aSelector object:(id)anObject block:(CustomBlock)aBlock {
+    if([anObject respondsToSelector:aSelector]) {
+        [self.eventsToRun addObject:[[[ITInputSource alloc] initWithObject:anObject selector:aSelector block:aBlock] autorelease]];
     }
 }
 
-- (void)run {
+- (void)start {
+    self.exitRunLoop = NO;
+    
     while (!self.exitRunLoop) {
-        for (MyBlock block in self.eventsToRun) {
-            block();
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        
+        for (ITInputSource *source in self.eventsToRun) {
+            source.block();
         }
+        
+        [pool drain];
     }
+}
+
+- (void)stop {
+    self.exitRunLoop = YES;
 }
 
 @end
