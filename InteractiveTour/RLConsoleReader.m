@@ -12,9 +12,9 @@
 
 @interface RLConsoleReader ()
 
-@property (retain)      NSMutableArray  *mutableEvents;
-@property (readwrite)   BOOL            isReading;
-@property (retain)      NSMutableString *resultOfUserInput;
+@property (nonatomic, readwrite, retain) NSMutableArray  *mutableEvents;
+@property (nonatomic, readwrite, assign) BOOL            isReading;
+@property (nonatomic, readwrite, retain) NSMutableString *resultOfUserInput;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -23,8 +23,8 @@
 
 @implementation RLConsoleReader
 
-@synthesize mutableEvents       = _mutableBuffer;
-@synthesize isReading           = _inProcessOfGettingInput;
+@synthesize mutableEvents       = _mutableEvents;
+@synthesize isReading           = _isReading;
 @synthesize resultOfUserInput   = _resultOfUserInput;
 
 @dynamic events;
@@ -50,7 +50,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.mutableEvents = [NSMutableArray autoreleasedObject];
+        self.mutableEvents = [NSMutableArray array];
         self.resultOfUserInput = [NSMutableString string];
     }
     return self;

@@ -11,8 +11,8 @@
 
 @interface RLConsoleReader : NSObject
 
-@property (nonatomic, readonly) NSArray *events;
-@property (readonly)            BOOL    isReading;
+@property (nonatomic, readonly, retain) NSArray *events;
+@property (nonatomic, readonly, assign) BOOL    isReading;
 
 - (ITEvent *)getInputEvent;
 - (void)start;
