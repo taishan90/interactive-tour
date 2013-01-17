@@ -9,12 +9,16 @@
 #import "RLConsoleReader.h"
 #import "ITEvent.h"
 #import "NSObject+InitAutoreleasedObject.h"
+#import "RLRunLoop.h"
 
 @interface RLConsoleReader ()
 
 @property (nonatomic, readwrite, retain) NSMutableArray  *mutableEvents;
 @property (nonatomic, readwrite, assign) BOOL            isReading;
 @property (nonatomic, readwrite, retain) NSMutableString *resultOfUserInput;
+
+// this is definitely something stupid
+@property (nonatomic, readwrite, retain) RLRunLoop *loop;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -26,6 +30,7 @@
 @synthesize mutableEvents       = _mutableEvents;
 @synthesize isReading           = _isReading;
 @synthesize resultOfUserInput   = _resultOfUserInput;
+@synthesize loop                = _loop;
 
 @dynamic events;
 
@@ -52,6 +57,7 @@
     if (self = [super init]) {
         self.mutableEvents = [NSMutableArray array];
         self.resultOfUserInput = [NSMutableString string];
+        self.loop = [RLRunLoop autoreleasedObject];
     }
     return self;
 }
@@ -69,11 +75,12 @@
 
 - (void)start {
     self.isReading = YES;
-    [self getUserInput];
+    [self.loop scheduleEventUsingSelector:@selector(getUserInput) withObject:self];
+    [self.loop performSelectorInBackground:@selector(start) withObject:nil];
 }
 
 - (void)stop {
-    self.isReading = NO;
+    [self.loop stop];
 }
 
 #pragma mark -
@@ -86,6 +93,8 @@
 }
 
 - (void)getUserInput {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     int inputChar = getc(stdin);
     
     if (inputChar == '\n') {
@@ -97,6 +106,7 @@
     } else {
         [self.resultOfUserInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
+    [pool release];
 }
 
 @end
