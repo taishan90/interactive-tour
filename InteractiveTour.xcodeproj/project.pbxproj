@@ -13,6 +13,7 @@
 		FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */; };
 		FC3A0640169C98D500718D68 /* RLRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3A063F169C98D500718D68 /* RLRunLoop.m */; };
 		FC93F7BC16A5A1390047BDE8 /* ITInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FC93F7BB16A5A1390047BDE8 /* ITInputSource.m */; };
+		FC95744116A85A3700EC4B85 /* RLAbstractConsoleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC95744016A85A3700EC4B85 /* RLAbstractConsoleReader.m */; };
 		FCA939471683BC8F00603C5F /* ITEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITEvent.m */; };
 		FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,8 @@
 		FC3A063F169C98D500718D68 /* RLRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLRunLoop.m; sourceTree = "<group>"; };
 		FC93F7BA16A5A1390047BDE8 /* ITInputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITInputSource.h; sourceTree = "<group>"; };
 		FC93F7BB16A5A1390047BDE8 /* ITInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITInputSource.m; sourceTree = "<group>"; };
+		FC95743F16A85A3700EC4B85 /* RLAbstractConsoleReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLAbstractConsoleReader.h; sourceTree = "<group>"; };
+		FC95744016A85A3700EC4B85 /* RLAbstractConsoleReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLAbstractConsoleReader.m; sourceTree = "<group>"; };
 		FCA939451683BC8F00603C5F /* ITEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITEvent.h; sourceTree = "<group>"; };
 		FCA939461683BC8F00603C5F /* ITEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITEvent.m; sourceTree = "<group>"; };
 		FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+InitAutoreleasedObject.h"; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				FC1DDE97167E252F00C0BE62 /* main.m */,
 				FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */,
 				FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */,
+				FC95743F16A85A3700EC4B85 /* RLAbstractConsoleReader.h */,
+				FC95744016A85A3700EC4B85 /* RLAbstractConsoleReader.m */,
 				FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */,
 				FC1DDE99167E252F00C0BE62 /* Supporting Files */,
 			);
@@ -170,6 +175,7 @@
 				FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */,
 				FC3A0640169C98D500718D68 /* RLRunLoop.m in Sources */,
 				FC93F7BC16A5A1390047BDE8 /* ITInputSource.m in Sources */,
+				FC95744116A85A3700EC4B85 /* RLAbstractConsoleReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
