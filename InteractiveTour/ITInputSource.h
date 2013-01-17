@@ -12,9 +12,9 @@ typedef void(^MyBlock)(void);
 
 @interface ITInputSource : NSObject
 
-@property (atomic, readonly, retain) id         object;
-@property (atomic, readonly, assign) SEL        selector;
-@property (atomic, readonly, copy) MyBlock    block;
+@property (atomic, readonly, retain)    id         object;
+@property (atomic, readonly, assign)    SEL        selector;
+@property (atomic, readonly, copy)      MyBlock    block;
 
 - (id)initWithObject:(id)anObject selector:(SEL)aSelector block:(MyBlock)aBlock;
 

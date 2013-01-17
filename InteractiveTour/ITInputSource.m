@@ -10,17 +10,17 @@
 
 @interface ITInputSource ()
 
-@property (atomic, readwrite, retain) id        object;
-@property (atomic, readwrite, assign) SEL       selector;
-@property (atomic, readwrite, copy) MyBlock   block;
+@property (atomic, readwrite, retain)   id        object;
+@property (atomic, readwrite, assign)   SEL       selector;
+@property (atomic, readwrite, copy)     MyBlock   block;
 
 @end
 
 @implementation ITInputSource
 
-@synthesize object =    _object;
-@synthesize selector =  _selector;
-@synthesize block =     _block;
+@synthesize object      = _object;
+@synthesize selector    = _selector;
+@synthesize block       = _block;
 
 #pragma mark -
 #pragma mark Initializations And Allocations
