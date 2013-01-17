@@ -9,11 +9,16 @@
 #import "RLConsoleReader.h"
 #import "ITEvent.h"
 #import "NSObject+InitAutoreleasedObject.h"
+#import "RLRunLoop.h"
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, retain)   NSMutableArray  *mutableEvents;
-@property (readwrite)           BOOL            isReading;
+@property (nonatomic, readwrite, retain) NSMutableArray  *mutableEvents;
+@property (nonatomic, readwrite, assign) BOOL            isReading;
+@property (nonatomic, readwrite, retain) NSMutableString *resultOfUserInput;
+
+// this is definitely something stupid
+@property (nonatomic, readwrite, retain) RLRunLoop *loop;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -22,8 +27,10 @@
 
 @implementation RLConsoleReader
 
-@synthesize mutableEvents   = _mutableBuffer;
-@synthesize isReading       = _inProcessOfGettingInput;
+@synthesize mutableEvents       = _mutableEvents;
+@synthesize isReading           = _isReading;
+@synthesize resultOfUserInput   = _resultOfUserInput;
+@synthesize loop                = _loop;
 
 @dynamic events;
 
@@ -41,13 +48,16 @@
 
 - (void)dealloc {
     self.mutableEvents = nil;
+    self.resultOfUserInput = nil;
     
     [super dealloc];
 }
 
 - (id)init {
     if (self = [super init]) {
-        self.mutableEvents = [NSMutableArray autoreleasedObject];
+        self.mutableEvents = [NSMutableArray array];
+        self.resultOfUserInput = [NSMutableString string];
+        self.loop = [RLRunLoop autoreleasedObject];
     }
     return self;
 }
@@ -65,11 +75,12 @@
 
 - (void)start {
     self.isReading = YES;
-    [self getUserInput];
+    [self.loop scheduleEventUsingSelector:@selector(getUserInput) withObject:self];
+    [self.loop performSelectorInBackground:@selector(start) withObject:nil];
 }
 
 - (void)stop {
-    self.isReading = NO;
+    [self.loop stop];
 }
 
 #pragma mark -
@@ -94,6 +105,7 @@
             [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
         }
     }
+    [pool release];
 }
 
 @end

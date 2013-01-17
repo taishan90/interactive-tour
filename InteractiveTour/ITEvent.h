@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ITEvent : NSObject {
-    NSDate *_date;
-}
+@interface ITEvent : NSObject
 
 @property (nonatomic, readonly, copy)       NSString    *value;
 @property (nonatomic, readonly, retain)     NSDate      *date;

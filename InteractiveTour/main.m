@@ -14,8 +14,10 @@ int main(int argc, const char * argv[])
 {
     RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
     [userInput start];
-    [userInput stop];
     
+    usleep(5000000);
+
+    [userInput stop];
 
     for (ITEvent *container in [userInput events]) {
         NSLog(@"%@ : %@", [container value], [container date]);
