@@ -49,6 +49,7 @@
 - (void)dealloc {
     self.mutableEvents = nil;
     self.resultOfUserInput = nil;
+    self.loop = nil;
     
     [super dealloc];
 }
@@ -93,17 +94,17 @@
 }
 
 - (void)getUserInput {
-    int inputChar;
-    NSMutableString *result = [NSMutableString string];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    int inputChar = getc(stdin);
     
-    while (((inputChar = getc(stdin)) != EOF) && self.isReading) {
-        if (inputChar == '\n') {
-            ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:result];
-            result = [NSMutableString string];
-            [self addInputEvent:[container autorelease]];
-        } else {
-            [result appendString:[NSString stringWithFormat:@"%c", inputChar]];
-        }
+    if (inputChar == '\n') {
+        ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:self.resultOfUserInput];
+        self.resultOfUserInput = [NSMutableString string];
+        [self addInputEvent:[container autorelease]];
+    } else if (inputChar == EOF) {
+        self.isReading = NO;
+    } else {
+        [self.resultOfUserInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
     [pool release];
 }
