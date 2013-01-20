@@ -13,15 +13,16 @@
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, readwrite, retain) NSMutableArray  *mutableEvents;
-@property (nonatomic, readwrite, assign) BOOL            isReading;
-@property (nonatomic, readwrite, retain) NSMutableString *resultOfUserInput;
+@property (nonatomic, readwrite, retain) NSMutableArray             *mutableEvents;
+@property (nonatomic, readwrite, assign) BOOL                       isReading;
+@property (nonatomic, readwrite, retain) NSMutableString            *resultOfUserInput;
+@property (nonatomic, readwrite, retain) id <RlConsoleReaderParent> parent;
 
-// this is definitely something stupid
-@property (nonatomic, readwrite, retain) RLRunLoop *loop;
+@property (nonatomic, readwrite, retain) RLRunLoop                  *loop;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
+- (void)activateParent:(NSNotification *)notification;
 
 @end
 
@@ -31,6 +32,7 @@
 @synthesize isReading           = _isReading;
 @synthesize resultOfUserInput   = _resultOfUserInput;
 @synthesize loop                = _loop;
+@synthesize parent              = _parent;
 
 @dynamic events;
 
@@ -50,6 +52,7 @@
     self.mutableEvents = nil;
     self.resultOfUserInput = nil;
     self.loop = nil;
+    self.parent = nil;
     
     [super dealloc];
 }
@@ -59,6 +62,8 @@
         self.mutableEvents = [NSMutableArray array];
         self.resultOfUserInput = [NSMutableString string];
         self.loop = [RLRunLoop autoreleasedObject];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activateParent:) name:@"ActivateParentForConsoleReader" object:nil];
     }
     return self;
 }
@@ -87,9 +92,15 @@
 #pragma mark -
 #pragma mark Private
 
+- (void)activateParent:(NSNotification *)notification {
+    id <RlConsoleReaderParent> theParent = notification.object;
+    self.parent = theParent;
+}
+
 - (void)addInputEvent:(ITEvent *)event {
     if (event) {
         [self.mutableEvents insertObject:event atIndex:0];
+        [self.parent obtainInput:event];
     }
 }
 

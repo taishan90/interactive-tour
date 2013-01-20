@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ITEvent.h"
 
+@protocol RlConsoleReaderParent <NSObject>
+
+- (void)obtainInput:(ITEvent *)event;
+
+@end
+
 @interface RLConsoleReader : NSObject
 
 @property (nonatomic, readonly, retain) NSArray *events;
