@@ -14,6 +14,8 @@
 		FC2E400D16A8693B00142199 /* ITInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E400A16A8693B00142199 /* ITInputSource.m */; };
 		FC2E400E16A8693B00142199 /* RLRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E400C16A8693B00142199 /* RLRunLoop.m */; };
 		FCA939471683BC8F00603C5F /* ITEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA939461683BC8F00603C5F /* ITEvent.m */; };
+		FCD81F6F16AC2E5000282710 /* RLExampleCRParent.m in Sources */ = {isa = PBXBuildFile; fileRef = FC95744016A85A3700EC4B85 /* RLExampleCRParent.m */; };
+		FCE6267C16AC6C0E000F9744 /* RLAbstractCRParent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE6267B16AC6C0E000F9744 /* RLAbstractCRParent.m */; };
 		FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */; };
 /* End PBXBuildFile section */
 
@@ -42,10 +44,12 @@
 		FC2E400A16A8693B00142199 /* ITInputSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITInputSource.m; sourceTree = "<group>"; };
 		FC2E400B16A8693B00142199 /* RLRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLRunLoop.h; sourceTree = "<group>"; };
 		FC2E400C16A8693B00142199 /* RLRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLRunLoop.m; sourceTree = "<group>"; };
-		FC95743F16A85A3700EC4B85 /* RLAbstractConsoleReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLAbstractConsoleReader.h; sourceTree = "<group>"; };
-		FC95744016A85A3700EC4B85 /* RLAbstractConsoleReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLAbstractConsoleReader.m; sourceTree = "<group>"; };
+		FC95743F16A85A3700EC4B85 /* RLExampleCRParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLExampleCRParent.h; sourceTree = "<group>"; };
+		FC95744016A85A3700EC4B85 /* RLExampleCRParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLExampleCRParent.m; sourceTree = "<group>"; };
 		FCA939451683BC8F00603C5F /* ITEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITEvent.h; sourceTree = "<group>"; };
 		FCA939461683BC8F00603C5F /* ITEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITEvent.m; sourceTree = "<group>"; };
+		FCE6267A16AC6C0E000F9744 /* RLAbstractCRParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLAbstractCRParent.h; sourceTree = "<group>"; };
+		FCE6267B16AC6C0E000F9744 /* RLAbstractCRParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLAbstractCRParent.m; sourceTree = "<group>"; };
 		FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+InitAutoreleasedObject.h"; sourceTree = "<group>"; };
 		FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+InitAutoreleasedObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,17 +96,16 @@
 			children = (
 				FCFFE3D0168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.h */,
 				FCFFE3D1168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m */,
-				FCA939451683BC8F00603C5F /* ITEvent.h */,
-				FCA939461683BC8F00603C5F /* ITEvent.m */,
+				FCE6267816AC6B33000F9744 /* Containers */,
 				FC1DDE97167E252F00C0BE62 /* main.m */,
-				FC2E400916A8693B00142199 /* ITInputSource.h */,
-				FC2E400A16A8693B00142199 /* ITInputSource.m */,
 				FC2E400B16A8693B00142199 /* RLRunLoop.h */,
 				FC2E400C16A8693B00142199 /* RLRunLoop.m */,
 				FC1DDEA6167E396900C0BE62 /* RLConsoleReader.h */,
 				FC1DDEA7167E396900C0BE62 /* RLConsoleReader.m */,
-				FC95743F16A85A3700EC4B85 /* RLAbstractConsoleReader.h */,
-				FC95744016A85A3700EC4B85 /* RLAbstractConsoleReader.m */,
+				FC95743F16A85A3700EC4B85 /* RLExampleCRParent.h */,
+				FC95744016A85A3700EC4B85 /* RLExampleCRParent.m */,
+				FCE6267A16AC6C0E000F9744 /* RLAbstractCRParent.h */,
+				FCE6267B16AC6C0E000F9744 /* RLAbstractCRParent.m */,
 				FC1DDE9B167E252F00C0BE62 /* InteractiveTour.1 */,
 				FC1DDE99167E252F00C0BE62 /* Supporting Files */,
 			);
@@ -115,6 +118,17 @@
 				FC1DDE9A167E252F00C0BE62 /* InteractiveTour-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCE6267816AC6B33000F9744 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				FCA939451683BC8F00603C5F /* ITEvent.h */,
+				FCA939461683BC8F00603C5F /* ITEvent.m */,
+				FC2E400916A8693B00142199 /* ITInputSource.h */,
+				FC2E400A16A8693B00142199 /* ITInputSource.m */,
+			);
+			name = Containers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,12 +182,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD81F6F16AC2E5000282710 /* RLExampleCRParent.m in Sources */,
 				FC1DDE98167E252F00C0BE62 /* main.m in Sources */,
 				FC1DDEA8167E396900C0BE62 /* RLConsoleReader.m in Sources */,
 				FCA939471683BC8F00603C5F /* ITEvent.m in Sources */,
 				FCFFE3D2168B7EE6009DB46A /* NSObject+InitAutoreleasedObject.m in Sources */,
 				FC2E400D16A8693B00142199 /* ITInputSource.m in Sources */,
 				FC2E400E16A8693B00142199 /* RLRunLoop.m in Sources */,
+				FCE6267C16AC6C0E000F9744 /* RLAbstractCRParent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
