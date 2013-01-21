@@ -8,23 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "RLConsoleReader.h"
-#import "ITEvent.h"
-#import "RLExampleCRParent.h"
+#import "RLAbstractConsoleOutputManager.h"
 
 int main(int argc, const char * argv[])
 {
     RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
-    RLExampleCRParent *parent = [[RLExampleCRParent alloc] init];
-    [parent activate];
+    RLAbstractConsoleOutputManager *printer = [[RLAbstractConsoleOutputManager alloc] init];
+    
+    [printer activateForReader:userInput];
+    
     [userInput start];
     
     usleep(5000000);
 
     [userInput stop];
 
+    [printer obtainInput];
+
     [userInput release];
-    [parent release];
-    
+    [printer release];
+
     return 0;
 }
-
