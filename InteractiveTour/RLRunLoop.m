@@ -12,12 +12,12 @@
 @interface RLRunLoop ()
 
 @property (atomic, readwrite, retain) NSMutableArray    *eventsToRun;
-@property (atomic, readwrite, assign) BOOL              exitRunLoop;
+@property (atomic, readwrite, assign) BOOL              isRunning;
 @end
 
 @implementation RLRunLoop
 
-@synthesize exitRunLoop = _exitRunLoop;
+@synthesize isRunning = _exitRunLoop;
 @synthesize eventsToRun = _eventsToRun;
 
 #pragma mark -
@@ -75,9 +75,9 @@
 }
 
 - (void)start {
-    self.exitRunLoop = NO;
+    self.isRunning = YES;
     
-    while (!self.exitRunLoop) {
+    while (self.isRunning) {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
         for (ITInputSource *source in self.eventsToRun) {
@@ -89,7 +89,7 @@
 }
 
 - (void)stop {
-    self.exitRunLoop = YES;
+    self.isRunning = NO;
 }
 
 @end

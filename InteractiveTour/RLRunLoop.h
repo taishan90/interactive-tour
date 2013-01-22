@@ -12,7 +12,7 @@ typedef void(^CustomBlock)(void);
 
 @interface RLRunLoop : NSObject
 
-@property (atomic, readonly, assign) BOOL exitRunLoop;
+@property (atomic, readonly, assign) BOOL isRunning;
 
 - (void)scheduleEventUsingSelector:(SEL)aSelector withObject:(id)anObject;
 - (void)scheduleEventUsingSelector:(SEL)aSelector object:(id)anObject block:(CustomBlock)aBlock;
