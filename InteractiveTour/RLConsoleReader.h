@@ -14,8 +14,9 @@
 @property (nonatomic, readonly, retain) NSArray *events;
 @property (nonatomic, readonly, assign) BOOL    isReading;
 
++ (RLConsoleReader *)sharedReader;
+
 - (ITEvent *)getInputEvent;
-- (void)start;
-- (void)stop;
+- (void)getUserInput;
 
 @end

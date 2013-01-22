@@ -8,14 +8,11 @@
 
 #import "RLConsoleReader.h"
 #import "NSObject+InitAutoreleasedObject.h"
-#import "RLRunLoop.h"
 
 @interface RLConsoleReader ()
 
 @property (nonatomic, readwrite, retain) NSMutableArray     *mutableEvents;
-@property (nonatomic, readwrite, assign) BOOL               isReading;
 @property (nonatomic, readwrite, retain) NSMutableString    *resultOfUserInput;
-@property (nonatomic, readwrite, retain) RLRunLoop          *loop;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -24,12 +21,29 @@
 
 @implementation RLConsoleReader
 
+static RLConsoleReader *sharedReader;
+
 @synthesize mutableEvents       = _mutableEvents;
-@synthesize isReading           = _isReading;
 @synthesize resultOfUserInput   = _resultOfUserInput;
-@synthesize loop                = _loop;
 
 @dynamic events;
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (RLConsoleReader *)sharedReader {
+    @synchronized(self)
+    {
+        if (!sharedReader) {
+            sharedReader = [[super allocWithZone:NULL] init];
+        }
+    }
+    return sharedReader;
+}
+
++ (id)allocWithZone:(NSZone *)zone {
+    return [[self sharedReader] retain];
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -46,7 +60,6 @@
 - (void)dealloc {
     self.mutableEvents = nil;
     self.resultOfUserInput = nil;
-    self.loop = nil;
     
     [super dealloc];
 }
@@ -55,7 +68,6 @@
     if (self = [super init]) {
         self.mutableEvents = [NSMutableArray array];
         self.resultOfUserInput = [NSMutableString string];
-        self.loop = [RLRunLoop autoreleasedObject];
     }
     return self;
 }
@@ -71,14 +83,22 @@
     return [event autorelease];
 }
 
-- (void)start {
-    self.isReading = YES;
-    [self.loop scheduleEventUsingSelector:@selector(getUserInput) withObject:self];
-    [self.loop performSelectorInBackground:@selector(start) withObject:nil];
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
 }
 
-- (void)stop {
-    [self.loop stop];
+- (id)retain {
+    return self;
+}
+
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+- (oneway void)release { }
+
+- (id)autorelease {
+    return self;
 }
 
 #pragma mark -
@@ -94,12 +114,10 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     int inputChar = getc(stdin);
     
-    if (inputChar == '\n') {
+    if (inputChar == '\n' || inputChar == EOF) {
         ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:self.resultOfUserInput];
         self.resultOfUserInput = [NSMutableString string];
         [self addInputEvent:[container autorelease]];
-    } else if (inputChar == EOF) {
-        self.isReading = NO;
     } else {
         [self.resultOfUserInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
