@@ -7,14 +7,20 @@
 //
 
 #import "RLAbstractConsoleOutputManager.h"
+#import "RLConsoleReader.h"
 
 @interface RLAbstractConsoleOutputManager ()
 
 @property (nonatomic, readwrite, retain) RLConsoleReader *reader;
 @property (nonatomic, readwrite) BOOL isActive;
+
+- (void)deactivate:(NSNotification *)notification;
+
 @end
 
 @implementation RLAbstractConsoleOutputManager
+
+#define RLDeactivateConsolePrinters @"DeactivateConsolePrinters"
 
 @synthesize reader = _reader;
 
@@ -29,8 +35,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deactivate:) name:@"DeactivateConsolePrinters" object:nil];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deactivate:) name:RLDeactivateConsolePrinters object:nil];
+        
     }
     return self;
 }
@@ -41,14 +47,16 @@
 - (void)obtainInput{
     if (self.isActive) {
         ITEvent *event = [self.reader getInputEvent];
-        NSLog(@"Output: %@", event.value);
+        if (event) {
+            NSLog(@"Output: %@", event.value);
+        }
     }
 }
 
-- (void)activateForReader:(RLConsoleReader *)aReader{
-    self.reader = aReader;
+- (void)activate {
+    self.reader = [RLConsoleReader sharedReader];
     self.isActive = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeactivateConsolePrinters" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RLDeactivateConsolePrinters object:self];
 }
 
 #pragma mark -

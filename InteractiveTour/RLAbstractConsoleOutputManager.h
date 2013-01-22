@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RLConsoleReader.h"
 #import "ITEvent.h"
 
 @interface RLAbstractConsoleOutputManager : NSObject
 
 - (void)obtainInput;
-- (void)activateForReader:(RLConsoleReader *)reader;
-- (void)deactivate:(NSNotification *)notification;
+- (void)activate;
 
 @end
