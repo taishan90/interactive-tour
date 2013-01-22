@@ -9,23 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "RLConsoleReader.h"
 #import "RLAbstractConsoleOutputManager.h"
+#import "RLRunLoop.h"
 
 int main(int argc, const char * argv[])
 {
-    RLConsoleReader *userInput = [[RLConsoleReader alloc] init];
+    RLConsoleReader *userInput = [RLConsoleReader sharedReader];
+    RLRunLoop *loop = [[RLRunLoop alloc] init];
     RLAbstractConsoleOutputManager *printer = [[RLAbstractConsoleOutputManager alloc] init];
     
-    [printer activateForReader:userInput];
-    
-    [userInput start];
+    [printer activate];
+
+    [loop scheduleEventUsingSelector:@selector(getUserInput) object:userInput block:^{
+        [userInput getUserInput];
+        [printer obtainInput];
+    }];
+    [loop performSelectorInBackground:@selector(start) withObject:nil];
     
     usleep(5000000);
 
-    [userInput stop];
+    [loop stop];
 
-    [printer obtainInput];
-
-    [userInput release];
+    [loop release];
     [printer release];
 
     return 0;
