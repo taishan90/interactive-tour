@@ -7,12 +7,11 @@
 //
 
 #import "RLConsoleReader.h"
-#import "NSObject+InitAutoreleasedObject.h"
+#import "ITEvent.h"
 
 @interface RLConsoleReader ()
 
-@property (nonatomic, readwrite, retain) NSMutableArray     *mutableEvents;
-@property (nonatomic, readwrite, retain) NSMutableString    *resultOfUserInput;
+@property (nonatomic, readwrite, retain) NSMutableArray *mutableEvents;
 
 - (void)getUserInput;
 - (void)addInputEvent:(ITEvent *)object;
@@ -21,10 +20,7 @@
 
 @implementation RLConsoleReader
 
-static RLConsoleReader *sharedReader;
-
 @synthesize mutableEvents       = _mutableEvents;
-@synthesize resultOfUserInput   = _resultOfUserInput;
 
 @dynamic events;
 
@@ -32,12 +28,11 @@ static RLConsoleReader *sharedReader;
 #pragma mark Class Methods
 
 + (RLConsoleReader *)sharedReader {
-    @synchronized(self)
-    {
-        if (!sharedReader) {
-            sharedReader = [[super allocWithZone:NULL] init];
-        }
-    }
+    static RLConsoleReader *sharedReader = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedReader = [[super allocWithZone:NULL] init];
+    });
     return sharedReader;
 }
 
@@ -57,17 +52,9 @@ static RLConsoleReader *sharedReader;
 #pragma mark -
 #pragma mark Initializations And Deallocations
 
-- (void)dealloc {
-    self.mutableEvents = nil;
-    self.resultOfUserInput = nil;
-    
-    [super dealloc];
-}
-
 - (id)init {
     if (self = [super init]) {
         self.mutableEvents = [NSMutableArray array];
-        self.resultOfUserInput = [NSMutableString string];
     }
     return self;
 }
@@ -112,15 +99,16 @@ static RLConsoleReader *sharedReader;
 
 - (void)getUserInput {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int inputChar = getc(stdin);
+    NSMutableString *resultOfInput = [NSMutableString string];
+    int inputChar;
     
-    if (inputChar == '\n' || inputChar == EOF) {
-        ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:self.resultOfUserInput];
-        self.resultOfUserInput = [NSMutableString string];
-        [self addInputEvent:[container autorelease]];
-    } else {
-        [self.resultOfUserInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
+    while ((inputChar = getc(stdin)) != '\n') {
+        [resultOfInput appendString:[NSString stringWithFormat:@"%c", inputChar]];
     }
+    
+    ITEvent *container = [[ITEvent alloc] initWithDate:[NSDate date] value:resultOfInput];
+    [self addInputEvent:[container autorelease]];
+
     [pool release];
 }
 

@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ITEvent.h"
+
+@class ITEvent;
 
 @interface RLConsoleReader : NSObject
 
 @property (nonatomic, readonly, retain) NSArray *events;
-@property (nonatomic, readonly, assign) BOOL    isReading;
 
 + (RLConsoleReader *)sharedReader;
 
