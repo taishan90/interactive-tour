@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ITEvent.h"
 
-@interface RLAbstractConsoleOutputManager : NSObject
+@class ITEvent;
 
-- (void)obtainInput;
+@interface RLAbstractOutputManager : NSObject
+
++ (RLAbstractOutputManager *)activeOutputManager;
+
 - (void)activate;
+- (void)didReceiveInputEvent:(ITEvent *)aEvent;
 
 @end
