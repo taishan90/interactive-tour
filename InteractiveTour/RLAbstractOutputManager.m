@@ -11,18 +11,41 @@
 
 @implementation RLAbstractOutputManager
 
-RLAbstractOutputManager *activeManager = nil;
+@dynamic isActive;
 
-+ (RLAbstractOutputManager *)activeOutputManager {
-    return activeManager;
+static RLAbstractOutputManager *__activeManager__ = nil;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (BOOL)isActive {
+    if (self == [RLAbstractOutputManager activeManager]) {
+        return YES;
+    }
+    return NO;
 }
 
-+ (void)setActiveOutputManager:(RLAbstractOutputManager *)aManager {
-    activeManager = aManager;
+#pragma mark -
+#pragma mark Class Methods
+
++ (RLAbstractOutputManager *)activeManager {
+    return __activeManager__;
 }
+
++ (void)setActiveManager:(RLAbstractOutputManager *)aManager {
+    [__activeManager__ release];
+    __activeManager__ = [aManager retain];
+}
+
++ (void)deactivateAllManagers {
+    [self setActiveManager:nil];
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (void)activate {
-    [RLAbstractOutputManager setActiveOutputManager:self];
+    [RLAbstractOutputManager setActiveManager:self];
 }
 
 - (void)didReceiveInputEvent:(ITEvent *)aEvent {

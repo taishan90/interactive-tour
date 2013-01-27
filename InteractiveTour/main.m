@@ -10,23 +10,20 @@
 #import "RLConsoleReader.h"
 #import "RLAbstractOutputManager.h"
 #import "RLRunLoop.h"
+#import "NSObject+InitAutoreleasedObject.h"
 
 int main(int argc, const char * argv[])
 {
-    RLConsoleReader *userInput = [RLConsoleReader sharedReader];
-    RLRunLoop *loop = [[RLRunLoop alloc] init];
-    RLAbstractOutputManager *printer = [[RLAbstractOutputManager alloc] init];
-    
-    [printer activate];
-    [loop scheduleEventUsingSelector:@selector(getUserInput) object:userInput block:^{
-        [userInput getUserInput];
-        [[RLAbstractOutputManager activeOutputManager] didReceiveInputEvent:[userInput getInputEvent]];
+    RLRunLoop *loop = [RLRunLoop autoreleasedObject];
+    RLAbstractOutputManager *outputManager = [RLAbstractOutputManager autoreleasedObject];
+
+    [outputManager activate];
+    [loop scheduleEventUsingSelector:@selector(getUserInput) object:[RLConsoleReader sharedReader] block:^{
+        [[RLConsoleReader sharedReader] getUserInput];
+        [[RLAbstractOutputManager activeManager] didReceiveInputEvent:[[RLConsoleReader sharedReader] getInputEvent]];
         
     }];
     [loop start];
-
-    [loop release];
-    [printer release];
 
     return 0;
 }

@@ -20,12 +20,12 @@
 
 @implementation RLConsoleReader
 
-@synthesize mutableEvents       = _mutableEvents;
+@synthesize mutableEvents = _mutableEvents;
 
 @dynamic events;
 
 #pragma mark -
-#pragma mark Class Methods
+#pragma mark Singleton Methods
 
 + (RLConsoleReader *)sharedReader {
     static RLConsoleReader *sharedReader = nil;
@@ -38,6 +38,24 @@
 
 + (id)allocWithZone:(NSZone *)zone {
     return [[self sharedReader] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)retain {
+    return self;
+}
+
+- (NSUInteger)retainCount {
+    return NSUIntegerMax;
+}
+
+- (oneway void)release { }
+
+- (id)autorelease {
+    return self;
 }
 
 #pragma mark -
@@ -68,24 +86,6 @@
         [self.mutableEvents removeLastObject];
     }
     return [event autorelease];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease {
-    return self;
 }
 
 #pragma mark -
