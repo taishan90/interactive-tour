@@ -11,7 +11,7 @@
 
 @implementation RLAbstractOutputManager
 
-@dynamic isActive;
+@dynamic active;
 
 static RLAbstractOutputManager *__activeManager__ = nil;
 

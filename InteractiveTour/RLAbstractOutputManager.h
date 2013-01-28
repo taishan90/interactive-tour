@@ -12,7 +12,7 @@
 
 @interface RLAbstractOutputManager : NSObject
 
-@property (nonatomic, readonly) BOOL isActive;
+@property (nonatomic, readonly, getter = isActive) BOOL active;
 
 + (RLAbstractOutputManager *)activeManager;
 + (void)deactivateAllManagers;
