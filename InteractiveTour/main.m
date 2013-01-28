@@ -12,8 +12,7 @@
 #import "RLRunLoop.h"
 #import "NSObject+InitAutoreleasedObject.h"
 
-int main(int argc, const char * argv[])
-{
+int main(int argc, const char * argv[]) {
     RLRunLoop *loop = [RLRunLoop autoreleasedObject];
     RLAbstractOutputManager *outputManager = [RLAbstractOutputManager autoreleasedObject];
 
