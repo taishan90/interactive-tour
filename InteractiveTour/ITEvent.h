@@ -13,6 +13,7 @@
 @property (nonatomic, readonly, copy)       NSString    *value;
 @property (nonatomic, readonly, retain)     NSDate      *date;
 
+// designated initializer
 - (id)initWithDate:(NSDate *)aDate value:(NSString *)aValue;
 
 @end

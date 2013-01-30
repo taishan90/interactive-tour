@@ -33,7 +33,9 @@
     [super dealloc];
 }
 
-- (id)initWithObject:(id)anObject selector:(SEL)aSelector block:(MyBlock)aBlock {
+- (id)initWithObject:(id)anObject
+            selector:(SEL)aSelector
+               block:(MyBlock)aBlock {
     if (self = [super init]) {
         self.object = anObject;
         self.selector = aSelector;

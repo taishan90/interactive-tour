@@ -14,8 +14,11 @@ typedef void(^CustomBlock)(void);
 
 @property (atomic, readonly, assign) BOOL isRunning;
 
-- (void)scheduleEventUsingSelector:(SEL)aSelector withObject:(id)anObject;
-- (void)scheduleEventUsingSelector:(SEL)aSelector object:(id)anObject block:(CustomBlock)aBlock;
+- (void)scheduleEventUsingSelector:(SEL)aSelector
+                        withObject:(id)anObject;
+- (void)scheduleEventUsingSelector:(SEL)aSelector
+                            object:(id)anObject
+                             block:(CustomBlock)aBlock;
 
 - (NSArray *)inputSourcesWithSelector:(SEL)aSelector;
 - (NSArray *)inputSourcesWithObject:(id)anObject;

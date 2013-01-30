@@ -62,13 +62,16 @@
     return [[result copy] autorelease];
 }
 
-- (void)scheduleEventUsingSelector:(SEL)aSelector withObject:(id)anObject {
+- (void)scheduleEventUsingSelector:(SEL)aSelector
+                        withObject:(id)anObject {
     [self scheduleEventUsingSelector:aSelector object:anObject block:^{
         [anObject performSelector:aSelector];
     }];
 }
 
-- (void)scheduleEventUsingSelector:(SEL)aSelector object:(id)anObject block:(CustomBlock)aBlock {
+- (void)scheduleEventUsingSelector:(SEL)aSelector
+                            object:(id)anObject
+                             block:(CustomBlock)aBlock {
     if([anObject respondsToSelector:aSelector]) {
         [self.eventsToRun addObject:[[[ITInputSource alloc] initWithObject:anObject selector:aSelector block:aBlock] autorelease]];
     }

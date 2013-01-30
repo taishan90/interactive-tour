@@ -16,6 +16,9 @@ typedef void(^MyBlock)(void);
 @property (atomic, readonly, assign)    SEL        selector;
 @property (atomic, readonly, copy)      MyBlock    block;
 
-- (id)initWithObject:(id)anObject selector:(SEL)aSelector block:(MyBlock)aBlock;
+// designated initializer
+- (id)initWithObject:(id)anObject
+            selector:(SEL)aSelector
+               block:(MyBlock)aBlock;
 
 @end
