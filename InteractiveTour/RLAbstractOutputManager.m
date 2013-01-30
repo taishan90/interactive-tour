@@ -33,12 +33,9 @@ static RLAbstractOutputManager *__activeManager__ = nil;
 }
 
 + (void)setActiveManager:(RLAbstractOutputManager *)aManager {
+    [aManager retain];
     [__activeManager__ release];
-    __activeManager__ = [aManager retain];
-}
-
-+ (void)deactivateAllManagers {
-    [self setActiveManager:nil];
+    __activeManager__ = aManager;
 }
 
 #pragma mark -
@@ -49,6 +46,10 @@ static RLAbstractOutputManager *__activeManager__ = nil;
 }
 
 - (void)didReceiveInputEvent:(ITEvent *)aEvent {
+}
+
+- (void)deactivate {
+    [RLAbstractOutputManager setActiveManager:nil];
 }
 
 @end
